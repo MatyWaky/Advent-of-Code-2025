@@ -20,6 +20,16 @@ public class Main {
                     secondColumn.add(Integer.parseInt(numbers[1]));
                 });
 
+
+        var similarityScore = firstColumn.stream()
+                .mapToInt(integer -> integer * (int) secondColumn.stream()
+                        .filter(value -> value.equals(integer))
+                        .count())
+                .sum();
+
+        System.out.println("Similarity score: " + similarityScore);
+
+
         firstColumn.sort(Integer::compareTo);
         secondColumn.sort(Integer::compareTo);
 
